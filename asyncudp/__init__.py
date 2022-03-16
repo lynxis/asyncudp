@@ -85,7 +85,7 @@ class Socket:
         self.close()
 
 
-async def create_socket(local_addr=None, remote_addr=None, *kwargs):
+async def create_socket(local_addr=None, remote_addr=None, **kwargs):
     """Create a UDP socket with given local and remote addresses.
 
     >>> sock = await asyncudp.create_socket(local_addr=('127.0.0.1', 9999))
@@ -96,6 +96,6 @@ async def create_socket(local_addr=None, remote_addr=None, *kwargs):
     transport, protocol = await loop.create_datagram_endpoint(
         _SocketProtocol,
         local_addr=local_addr,
-        remote_addr=remote_addr, *kwargs)
+        remote_addr=remote_addr, **kwargs)
 
     return Socket(transport, protocol)
